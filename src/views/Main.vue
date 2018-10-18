@@ -7,11 +7,6 @@
       
       <br><br><br>
       <section v-show="!ready">
-        <transition mode="out-in" enter-active-class="animated flash">
-          <small v-if="error != ''">{{error}}</small>
-        </transition>
-        <br>
-        
         <label>Tu número</label>
         <div class="inline-group">
           <div class="field">
@@ -52,12 +47,6 @@
       </div>
 
     </section>
-
-    <transition mode="out-in" enter-active-class="animated flash" :duration="500">
-        <div v-show="alert" class="alert">
-          {{mensage}}
-        </div>
-    </transition>
   
   </div>
 </template>
@@ -68,20 +57,25 @@ export default {
   name: "Main",
   data() {
     return {
-      alert: false,
-      mensage: "Texto copiado",
-      error: "",
       statusEdit: true,
       Liga: {
         id: "",
-        number: "6462391197",
-        msg: "lorem ipsu lorem ipsu",
+        number: "",
+        msg: "",
         url: "",
         cant: 0,
         date: null
       },
       ready: false
     };
+  },
+  created() {
+    let _id = this.$route.params.ligaId;
+    if (typeof _id != "undefined") {
+      this.Liga = this.$store.state.Ligas.find(liga => {
+        return liga.id == _id;
+      });
+    }
   },
   methods: {
     async GenerarLiga() {
@@ -104,8 +98,6 @@ export default {
       vm.ready = true;
     },
     CopyUrl() {
-      console.log(this.$store.state.Ligas);
-
       let url = document.getElementById("liga").getAttribute("href");
       let dummy = document.createElement("input");
       document.body.appendChild(dummy);
@@ -158,7 +150,6 @@ export default {
           timer: 1000
         });
       }
-      console.log(this.$store.state.Ligas);
     }
   }
 };

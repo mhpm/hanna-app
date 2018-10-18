@@ -9,16 +9,16 @@
         </transition>
         <br>
         <div class="field">
-          <input v-model="User.email" type="text">
+          <input placeholder="user" v-model="User.email" type="text">
         </div>
         <div class="field">
-          <input v-model="User.password" type="password">
+          <input placeholder="password" v-model="User.password" type="password">
         </div>
         <div class="field">
           <button class="btn bg-red btn-fill" @click="Login">INICIAR SESIÓN</button>
         </div>
         <div class="field">
-          <router-link to="/Restablecer">
+          <router-link to="/">
             <a href="">Olvide mi contraseña</a>
           </router-link>
         </div>
@@ -46,9 +46,10 @@ export default {
         if (
           this.User.email == "usuario@gmail.com" &&
           this.User.password == "abc123"
-        )
-          this.$router.push({ name: "Main" });
-        else this.error = "Error de Usuario o Contraseña";
+        ) {
+          this.$store.state.User = this.User;
+          this.$router.push({ name: "Main", params: { User: true } });
+        } else this.error = "Error de Usuario o Contraseña";
       }
     }
   }
@@ -58,6 +59,10 @@ export default {
 <style scoped>
 .login {
   text-align: center;
+}
+
+::-webkit-input-placeholder {
+  color: #cecece;
 }
 </style>
 
