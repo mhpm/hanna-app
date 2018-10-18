@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     Ligas: require("./data/ligas.json"),
-    User: {}
+    User: true
   },
   mutations: {
 

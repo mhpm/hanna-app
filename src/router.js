@@ -18,29 +18,20 @@ export default new Router({
       path: '/Main',
       name: 'Main',
       component: Main,
-      params: true,
-      beforeEnter: (to, from, next) => {
-        if (to.params.User)
-          next()
-        else
-          next({
-            name: 'Login'
-          })
-      }
+      params: true
+      // beforeEnter: (to, from, next) => {
+      //   if (to.params.User)
+      //     next()
+      //   else
+      //     next({
+      //       name: 'Login'
+      //     })
+      // }
     },
     {
       path: '/Historial',
       name: 'Historial',
-      component: Historial,
-      params: true,
-      beforeEnter: (to, from, next) => {
-        if (to.params.User)
-          next()
-        else
-          next({
-            name: 'Login'
-          })
-      }
+      component: Historial
     }
   ]
 })

@@ -38,6 +38,7 @@ export default {
   props: {
     data: Array
   },
+  created() {},
   methods: {
     CopyUrl(url) {
       let dummy = document.createElement("input");

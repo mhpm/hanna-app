@@ -23,6 +23,9 @@ export default {
         x.className = "navbar";
       }
     }
+  },
+  beforeCreate() {
+    if (!this.$store.state.User) this.$router.push({ name: "Login" });
   }
 };
 </script>

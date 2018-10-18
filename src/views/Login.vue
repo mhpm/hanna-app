@@ -47,8 +47,8 @@ export default {
           this.User.email == "usuario@gmail.com" &&
           this.User.password == "abc123"
         ) {
-          this.$store.state.User = this.User;
-          this.$router.push({ name: "Main", params: { User: true } });
+          this.$store.state.User = true;
+          this.$router.push({ name: "Main" });
         } else this.error = "Error de Usuario o Contraseña";
       }
     }
